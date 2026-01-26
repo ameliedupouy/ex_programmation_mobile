@@ -4,8 +4,15 @@ import 'bouton_continuer.dart';
 import 'separateur.dart';
 import 'bouton_continueravec.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  String _email = '';
 
   @override
   Widget build(BuildContext context) {
@@ -23,19 +30,53 @@ class LoginPage extends StatelessWidget {
         elevation: 0,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
         child: Column(
           children: [
-            const Email(),
-            const SizedBox(height: 16),
-            const BoutonContinuer(onPressed: null),
-            const Separateur(),
-            BoutonContinuerAvec(
-              label: 'Google',
-              iconPath: 'assets/google_logo.svg',
-              onPressed: () {
-                //rajouter plus tard ce que fera le bouton
+            Email(
+              onChanged: (value) {
+                setState(() {
+                  _email = value;
+                });
               },
+            ),
+            const SizedBox(height: 24),
+
+            SizedBox(
+              width: 250,
+              child: BoutonContinuer(
+                onPressed: _email.isNotEmpty ? () {} : null,
+              ),
+            ),
+            const SizedBox(height: 40),
+            const Separateur(),
+            const SizedBox(height: 40),
+
+            SizedBox(
+              width: 250,
+              child: BoutonContinuerAvec(
+                label: 'Apple',
+                iconPath: 'assets/apple_logo.svg',
+                onPressed: () {},
+              ),
+            ),
+            const SizedBox(height: 16),
+            SizedBox(
+              width: 250,
+              child: BoutonContinuerAvec(
+                label: 'Google',
+                iconPath: 'assets/google_logo.svg',
+                onPressed: () {},
+              ),
+            ),
+            const SizedBox(height: 16),
+            SizedBox(
+              width: 250,
+              child: BoutonContinuerAvec(
+                label: 'Facebook',
+                iconPath: 'assets/facebook_logo.svg',
+                onPressed: () {},
+              ),
             ),
           ],
         ),

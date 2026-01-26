@@ -15,22 +15,31 @@ class BoutonContinuerAvec extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FilledButton.icon(
-      onPressed: onPressed,
-      icon: SvgPicture.asset(
-        iconPath,
-        width: 24,
-        height: 24,
-      ),
-      label: Text(label),
-      style: OutlinedButton.styleFrom(
-      backgroundColor: Colors.white,
-      foregroundColor: Colors.black,
-      side: const BorderSide(color: Colors.grey),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
-      ),
-      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+    return SizedBox(
+      width: double.infinity,
+      height: 52,
+      child: OutlinedButton.icon(
+        onPressed: onPressed,
+        icon: SvgPicture.asset(
+          iconPath,
+          width: 22,
+          height: 22,
+        ),
+        label: Text(
+          'Continue with $label',
+          style: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        style: OutlinedButton.styleFrom(
+          backgroundColor: Colors.white,
+          foregroundColor: Colors.black,
+          side: const BorderSide(color: Color(0xFFD1D5DB)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(14),
+          ),
+        ),
       ),
     );
   }

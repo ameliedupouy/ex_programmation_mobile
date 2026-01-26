@@ -5,15 +5,18 @@ class Separateur extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(vertical: 16.0),
-      child: Text(
-        'Ou',
-        style: TextStyle(
-          color: Colors.grey,
-          fontSize: 16,
+    return Row(
+      children: [
+        Expanded(
+          child: Divider(color: Theme.of(context).dividerColor, thickness: 1),
         ),
-      ),
+        const SizedBox(width: 10),
+        const Text('Or', style: TextStyle(color: Colors.grey, fontSize: 16)),
+        const SizedBox(width: 10),
+        Expanded(
+          child: Divider(color: Theme.of(context).dividerColor, thickness: 1),
+        ),
+      ],
     );
   }
 }
