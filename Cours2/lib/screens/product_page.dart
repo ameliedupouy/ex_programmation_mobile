@@ -1,167 +1,87 @@
 import 'package:flutter/material.dart';
 
 class ProductPage extends StatelessWidget {
-  const ProductPage({Key? key}) : super(key: key);
+  const ProductPage({super.key});
+
+  static const double IMAGE_HEIGHT = 300.0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            ProductHeader(
-              imageUrl:
-                  'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?q=80&w=1310&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-              productName: 'Petits pois et carottes',
-              brandName: 'Cassegrain',
-            ),
-            const SizedBox(height: 50),
-            const InfoRow(label: 'Quantité', value: '200g (égoutté 130g)'),
-            const InfoRow(
-              label: 'Vendu',
-              value: 'France',
-              showSeparator: false,
-            ),
-          ],
-        ),
+      body: Stack(
+        children: [
+          PositionedDirectional(
+            top: 0.0,
+            start: 0.0,
+            end: 0.0,
+            height: IMAGE_HEIGHT,
+            child: _ProductPicture(),
+          ),
+          PositionedDirectional(
+            top: IMAGE_HEIGHT - 16,
+            start: 0.0,
+            end: 0.0,
+            bottom: 0.0,
+            child: _ProductDetails(),
+          ),
+        ],
       ),
     );
   }
 }
 
-class ProductHeader extends StatelessWidget {
-  final String imageUrl;
-  final String productName;
-  final String brandName;
-
-  const ProductHeader({
-    Key? key,
-    required this.imageUrl,
-    required this.productName,
-    required this.brandName,
-  }) : super(key: key);
+class _ProductPicture extends StatelessWidget {
+  const _ProductPicture({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      clipBehavior: Clip.none,
-      children: [
-        Container(
-          height: 250,
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(16),
-              topRight: Radius.circular(16),
-            ),
-            image: DecorationImage(
-              image: NetworkImage(imageUrl),
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-        Positioned(
-          top: 16,
-          left: 16,
-          right: 16,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              IconButton(
-                icon: const Icon(
-                  Icons.arrow_back,
-                  color: Colors.white,
-                  size: 28,
-                ),
-                onPressed: () => Navigator.of(context).pop(),
-              ),
-              IconButton(
-                icon: const Icon(Icons.share, color: Colors.white, size: 28),
-                onPressed: () {},
-              ),
-            ],
-          ),
-        ),
-        Positioned(
-          bottom: -30,
-          left: 20,
-          right: 20,
-          child: Card(
-            elevation: 4,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.only(
-                top: 30,
-                left: 20,
-                right: 20,
-                bottom: 20,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    productName,
-                    style: const TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF1A1F71),
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    brandName,
-                    style: TextStyle(fontSize: 16, color: Colors.grey[600]),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ],
+    return Image.network(
+      'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?q=80&w=1310&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      fit: BoxFit.cover,
     );
   }
 }
 
-class InfoRow extends StatelessWidget {
-  final String label;
-  final String value;
-  final bool showSeparator;
-
-  const InfoRow({
-    Key? key,
-    required this.label,
-    required this.value,
-    this.showSeparator = true,
-  }) : super(key: key);
+class _ProductDetails extends StatelessWidget {
+  const _ProductDetails({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                label,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black87,
-                ),
-              ),
-              Text(
-                value,
-                style: TextStyle(fontSize: 16, color: Colors.grey[700]),
-              ),
-            ],
-          ),
-        ),
-        if (showSeparator)
-          Divider(height: 1, thickness: 1, color: Colors.grey[300]),
-      ],
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16.0)),
+        color: Colors.white,
+      ),
+      child: Column(
+        children: [
+          Text('Text 1'),
+          Text('Text 2'),
+          _ProductData(label: 'Quantité', value: '200g'),
+        ],
+      ),
     );
+  }
+}
+
+/// Faire ici Quantité & Vendu
+class _ProductData extends StatelessWidget {
+  const _ProductData({super.key, required this.label, required this.value});
+
+  final String label;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(children: [Text(label), Spacer(), Text(value)]);
+  }
+}
+
+/// Faire ici boutons Végétalien & Végétarien
+class _ProductButtons extends StatelessWidget {
+  const _ProductButtons({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }

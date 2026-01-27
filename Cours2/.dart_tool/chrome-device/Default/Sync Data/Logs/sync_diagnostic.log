@@ -127,3 +127,65 @@
 2026-01-26 11:26:45.058: [INFO][Sync]     Configuration completed, state: 3
 2026-01-26 11:26:45.059: [INFO][Sync] Configured DataTypeManager: Ok
 2026-01-26 11:26:45.068: [INFO][SyncEngineBackend::DoStartSyncing] Start syncing
+2026-01-27 14:27:43.213: [INFO][Sync] SyncState after authenticated was: FeatureCanStart
+2026-01-27 14:27:45.938: [INFO][SyncAuthManager::SetLastAuthError] Current auth error: None
+2026-01-27 14:27:45.938: [INFO][SyncAuthManager::EdgeLogTokenErrorState] Token error with: None for account type: AAD
+2026-01-27 14:27:45.938: [INFO][Sync] Credentials changed for: EdgeSyncKeyDataScope
+2026-01-27 14:27:45.939: [INFO][Sync] Try to start sync engine
+2026-01-27 14:27:45.957: [INFO][SyncManagerImpl::NudgeForInitialDownload] Initial download nudge for Encryption Keys
+2026-01-27 14:27:45.957: [INFO][SyncEngineBackend::LoadAndConnectNigoriController] Load and connect Nigori controller
+2026-01-27 14:27:45.957: [INFO][SyncEngineBackend::DoInitialize] Control Types added: Encryption Keys
+2026-01-27 14:27:45.957: [INFO][SyncManagerImpl::ConfigureSyncer] Types to download: Encryption Keys with reason: 3
+2026-01-27 14:27:45.958: [INFO][SyncEngineBackend::DoUpdateKeyDataCredentials] Update key data credentials
+2026-01-27 14:27:45.959: [INFO][SyncSchedulerImpl::DoConfigurationSyncCycleJob] Configure job was blocked
+2026-01-27 14:27:48.044: [INFO][SyncAuthManager::SetLastAuthError] Current auth error: None
+2026-01-27 14:27:48.044: [INFO][SyncAuthManager::EdgeLogTokenErrorState] Token error with: None for account type: AAD
+2026-01-27 14:27:48.044: [INFO][Sync] Credentials changed for: EdgeSyncScopeNew
+2026-01-27 14:27:48.044: [INFO][SyncEngineBackend::DoUpdateCredentials] Update credentials
+2026-01-27 14:27:48.044: [INFO][SyncSchedulerImpl::DoConfigurationSyncCycleJob] Blocked types:  and types to download: Encryption Keys
+2026-01-27 14:27:48.883: [INFO][SyncEngineBackend::DoUpdateKeyDataCredentials] Update key data credentials
+2026-01-27 14:27:48.893: [INFO][Sync] Started DataTypeManager configuration, reason: 4
+2026-01-27 14:27:48.894: [INFO][Sync] Configuring for: Bookmarks, Preferences, Passwords, Autofill Profiles, Autofill, Extensions, Sessions, Extension settings, History Delete Directives, Device Info, User Consents, Send Tab To Self, Web Apps, History, Saved Tab Group, WebAuthn Credentials, Collection, Edge E Drop, Edge Hub App Usage, Edge Wallet, Encryption Keys, reason: 4, current state: 0
+2026-01-27 14:27:48.895: [INFO][SyncEngineBackend::DoStartConfiguration] Start configuration
+2026-01-27 14:27:48.901: [INFO][Sync] Configure, desired: Bookmarks, Preferences, Passwords, Autofill Profiles, Autofill, Extensions, Sessions, Extension settings, History Delete Directives, Device Info, User Consents, Send Tab To Self, Web Apps, History, Saved Tab Group, WebAuthn Credentials, Collection, Edge E Drop, Edge Hub App Usage, Edge Wallet, Encryption Keys; Allow fail: 
+2026-01-27 14:27:48.902: [INFO][Sync] Loading: Bookmarks
+2026-01-27 14:27:48.902: [INFO][Sync] Loading: Preferences
+2026-01-27 14:27:48.902: [INFO][Sync] Loading: Passwords
+2026-01-27 14:27:48.902: [INFO][Sync] Loading: Autofill Profiles
+2026-01-27 14:27:48.902: [INFO][Sync] Loading: Autofill
+2026-01-27 14:27:48.902: [INFO][Sync] Loading: Extensions
+2026-01-27 14:27:48.903: [INFO][Sync] Loading: Sessions
+2026-01-27 14:27:48.903: [INFO][Sync] Loading: Extension settings
+2026-01-27 14:27:48.903: [INFO][Sync] Loading: History Delete Directives
+2026-01-27 14:27:48.904: [INFO][Sync] Loading: Device Info
+2026-01-27 14:27:48.904: [INFO][Sync] Loading: User Consents
+2026-01-27 14:27:48.904: [INFO][Sync] Loading: Send Tab To Self
+2026-01-27 14:27:48.904: [INFO][Sync] Loading: Web Apps
+2026-01-27 14:27:48.904: [INFO][Sync] Loading: History
+2026-01-27 14:27:48.904: [INFO][Sync] Loading: Saved Tab Group
+2026-01-27 14:27:48.904: [INFO][Sync] Loading: WebAuthn Credentials
+2026-01-27 14:27:48.904: [INFO][Sync] Loading: Collection
+2026-01-27 14:27:48.904: [INFO][Sync] Loading: Edge E Drop
+2026-01-27 14:27:48.904: [INFO][Sync] Loading: Edge Hub App Usage
+2026-01-27 14:27:48.904: [INFO][Sync] Loading: Edge Wallet
+2026-01-27 14:27:48.935: [INFO][Sync] All data types are ready for configure.
+2026-01-27 14:27:48.936: [INFO][SyncManagerImpl::ConfigureSyncer] Types to download:  with reason: 4
+2026-01-27 14:27:48.936: [INFO][SyncEngineBackend::DoFinishConfigureDataTypes] Failed to download types:  and succeeded types: 
+2026-01-27 14:27:48.942: [INFO][Sync] ConfigurationDone, failed: , succeeded: , remaining count: 4
+2026-01-27 14:27:48.942: [INFO][SyncManagerImpl::ConfigureSyncer] Types to download:  with reason: 4
+2026-01-27 14:27:48.942: [INFO][SyncEngineBackend::DoFinishConfigureDataTypes] Failed to download types:  and succeeded types: 
+2026-01-27 14:27:48.943: [INFO][Sync] ConfigurationDone, failed: , succeeded: , remaining count: 3
+2026-01-27 14:27:48.943: [INFO][SyncManagerImpl::ConfigureSyncer] Types to download:  with reason: 4
+2026-01-27 14:27:48.943: [INFO][SyncEngineBackend::DoFinishConfigureDataTypes] Failed to download types:  and succeeded types: 
+2026-01-27 14:27:48.943: [INFO][Sync] ConfigurationDone, failed: , succeeded: , remaining count: 2
+2026-01-27 14:27:48.943: [INFO][SyncManagerImpl::ConfigureSyncer] Types to download:  with reason: 4
+2026-01-27 14:27:48.943: [INFO][SyncEngineBackend::DoFinishConfigureDataTypes] Failed to download types:  and succeeded types: 
+2026-01-27 14:27:48.943: [INFO][Sync] ConfigurationDone, failed: , succeeded: , remaining count: 1
+2026-01-27 14:27:48.946: [INFO][SyncManagerImpl::ConfigureSyncer] Types to download:  with reason: 4
+2026-01-27 14:27:48.946: [INFO][SyncEngineBackend::DoFinishConfigureDataTypes] Failed to download types:  and succeeded types: 
+2026-01-27 14:27:48.957: [INFO][Sync] ConfigurationDone, failed: , succeeded: , remaining count: 0
+2026-01-27 14:27:48.960: [INFO][Sync]     Configuration completed, state: 3
+2026-01-27 14:27:48.961: [INFO][Sync] Configured DataTypeManager: Ok
+2026-01-27 14:27:48.968: [INFO][SyncEngineBackend::DoStartSyncing] Start syncing
+2026-01-27 15:33:13.188: [INFO][Sync] Reset engine, reason: 0
+2026-01-27 15:33:13.188: [INFO][Sync] Reset engine with reason: 0
