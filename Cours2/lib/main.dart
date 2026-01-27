@@ -8,7 +8,7 @@ import 'package:formation_flutter/model/product.dart';
 void main() {
   final fakeProduct = generateProduct();
 
-  runApp(ProductProvider(product: fakeProduct, child: MyApp()));
+  runApp(ProductInh(product: fakeProduct, child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {

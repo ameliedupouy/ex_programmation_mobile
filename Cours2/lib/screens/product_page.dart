@@ -5,24 +5,24 @@ import 'package:formation_flutter/res/app_colors.dart';
 import 'package:formation_flutter/res/app_icons.dart';
 import 'package:formation_flutter/res/app_theme_extension.dart';
 
-class ProductProvider extends InheritedWidget {
+class ProductInh extends InheritedWidget {
   final Product product;
 
-  const ProductProvider({
+  const ProductInh({
     required this.product,
     required super.child,
     super.key,
   });
 
-  static ProductProvider of(BuildContext context) {
-    final provider = context
-        .dependOnInheritedWidgetOfExactType<ProductProvider>();
-    assert(provider != null, 'No ProductProvider found in context');
+  static ProductInh of(BuildContext context) {
+    final provider =
+        context.dependOnInheritedWidgetOfExactType<ProductInh>();
+    assert(provider != null, 'No ProductInh found in context');
     return provider!;
   }
 
   @override
-  bool updateShouldNotify(covariant ProductProvider oldWidget) {
+  bool updateShouldNotify(covariant ProductInh oldWidget) {
     return product != oldWidget.product;
   }
 }
@@ -34,7 +34,7 @@ class ProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final product = ProductProvider.of(context).product;
+    final product = ProductInh.of(context).product;
 
     return Scaffold(
       body: SingleChildScrollView(
