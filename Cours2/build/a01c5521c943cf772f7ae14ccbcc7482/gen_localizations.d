@@ -1,0 +1,1 @@
+ C:\\Users\\ameli\\ex_programmation_mobile\\Cours2\\lib\\l10n\\app_localizations_fr.dart C:\\Users\\ameli\\ex_programmation_mobile\\Cours2\\lib\\l10n\\app_localizations.dart:  C:\\Users\\ameli\\ex_programmation_mobile\\Cours2\\l10n.yaml C:\\Users\\ameli\\ex_programmation_mobile\\Cours2\\lib\\l10n\\app_fr.arb
