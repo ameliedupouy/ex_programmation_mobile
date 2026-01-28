@@ -12,6 +12,8 @@ class ProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final product = ProductInh.of(context).product;
+
     return Scaffold(
       body: SizedBox.expand(
         child: Stack(
@@ -22,7 +24,7 @@ class ProductPage extends StatelessWidget {
               end: 0.0,
               height: IMAGE_HEIGHT,
               child: Image.network(
-                'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?q=80&w=1310&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                product.picture ?? '',
                 fit: BoxFit.cover,
                 cacheHeight:
                     (IMAGE_HEIGHT * MediaQuery.devicePixelRatioOf(context))
@@ -49,11 +51,20 @@ class ProductPage extends StatelessWidget {
                   crossAxisAlignment: .start,
                   children: [
                     Text(
-                      'Petits pois et carottes',
+                      product.name ?? 'Produit',
                       style: context.theme.title1,
                     ),
-                    Text('Cassegrain', style: context.theme.title2),
-                    Scores(),
+                    Text(
+                      product.brands?.first ?? 'Marque',
+                      style: context.theme.title2,
+                    ),
+                    Scores(
+                      nutriScore:
+                          product.nutriScore ?? ProductNutriScore.unknown,
+                      novaScore: product.novaScore ?? ProductNovaScore.unknown,
+                      greenScore:
+                          product.greenScore ?? ProductGreenScore.unknown,
+                    ),
                   ],
                 ),
               ),
@@ -66,7 +77,16 @@ class ProductPage extends StatelessWidget {
 }
 
 class Scores extends StatelessWidget {
-  const Scores({super.key});
+  final ProductNutriScore nutriScore;
+  final ProductNovaScore novaScore;
+  final ProductGreenScore greenScore;
+
+  const Scores({
+    super.key,
+    required this.nutriScore,
+    required this.novaScore,
+    required this.greenScore,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -76,20 +96,14 @@ class Scores extends StatelessWidget {
           child: Row(
             crossAxisAlignment: .start,
             children: [
-              Expanded(
-                flex: 44,
-                child: _Nutriscore(nutriscore: ProductNutriScore.B),
-              ),
+              Expanded(flex: 44, child: _Nutriscore(nutriscore: nutriScore)),
               VerticalDivider(),
-              Expanded(
-                flex: 56,
-                child: _NovaGroup(novaScore: ProductNovaScore.group4),
-              ),
+              Expanded(flex: 56, child: _NovaGroup(novaScore: novaScore)),
             ],
           ),
         ),
         Divider(),
-        _GreenScore(greenScore: ProductGreenScore.A),
+        _GreenScore(greenScore: greenScore),
       ],
     );
   }
@@ -245,5 +259,21 @@ class _TestState extends State<Test> {
   @override
   Widget build(BuildContext context) {
     return const Placeholder();
+  }
+}
+
+//test inherited widget
+class ProductInh extends InheritedWidget {
+  final Product product;
+
+  const ProductInh({super.key, required this.product, required super.child});
+
+  static ProductInh of(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<ProductInh>()!;
+  }
+
+  @override
+  bool updateShouldNotify(ProductInh oldWidget) {
+    return oldWidget.product != product;
   }
 }
