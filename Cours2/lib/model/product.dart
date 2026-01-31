@@ -49,6 +49,63 @@ class Product {
     this.isVegan,
     this.isVegetarian,
   });
+
+  factory Product.fromJson(Map<String, dynamic> json) {
+    return Product(
+      barcode: json['barcode'] ?? '',
+      name: json['name'],
+      altName: json['alt_name'],
+      picture: json['picture'],
+      quantity: json['quantity'],
+      brands: json['brands'] != null
+          ? List<String>.from(json['brands'])
+          : null,
+      manufacturingCountries: json['manufacturing_countries'] != null
+          ? List<String>.from(json['manufacturing_countries'])
+          : null,
+      nutriScore: _nutriScoreFromString(json['nutriscore']),
+      novaScore: _novaScoreFromInt(json['nova_group']),
+      greenScore: _greenScoreFromString(json['ecoscore']),
+      ingredients: json['ingredients'] != null
+          ? List<String>.from(json['ingredients'])
+          : null,
+      ingredientsWithAllergens: json['ingredients_with_allergens'],
+    );
+  }
+}
+
+ProductNutriScore _nutriScoreFromString(String? value) {
+  return switch (value) {
+    'a' => ProductNutriScore.A,
+    'b' => ProductNutriScore.B,
+    'c' => ProductNutriScore.C,
+    'd' => ProductNutriScore.D,
+    'e' => ProductNutriScore.E,
+    _ => ProductNutriScore.unknown,
+  };
+}
+
+ProductNovaScore _novaScoreFromInt(dynamic value) {
+  return switch (value) {
+    1 => ProductNovaScore.group1,
+    2 => ProductNovaScore.group2,
+    3 => ProductNovaScore.group3,
+    4 => ProductNovaScore.group4,
+    _ => ProductNovaScore.unknown,
+  };
+}
+
+ProductGreenScore _greenScoreFromString(String? value) {
+  return switch (value) {
+    'a+' => ProductGreenScore.APlus,
+    'a' => ProductGreenScore.A,
+    'b' => ProductGreenScore.B,
+    'c' => ProductGreenScore.C,
+    'd' => ProductGreenScore.D,
+    'e' => ProductGreenScore.E,
+    'f' => ProductGreenScore.F,
+    _ => ProductGreenScore.unknown,
+  };
 }
 
 class NutritionFacts {
