@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:formation_flutter/model/product_notifier.dart';
 import 'package:formation_flutter/l10n/app_localizations.dart';
 import 'package:formation_flutter/model/product.dart';
 import 'package:formation_flutter/res/app_colors.dart';
@@ -12,66 +14,78 @@ class ProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final product = ProductInh.of(context).product;
+    return Consumer<ProductNotifier>(
+      builder: (context, notifier, child) {
+        final product = notifier.product;
 
-    return Scaffold(
-      body: SizedBox.expand(
-        child: Stack(
-          children: [
-            PositionedDirectional(
-              top: 0.0,
-              start: 0.0,
-              end: 0.0,
-              height: IMAGE_HEIGHT,
-              child: Image.network(
-                product.picture ?? '',
-                fit: BoxFit.cover,
-                cacheHeight:
-                    (IMAGE_HEIGHT * MediaQuery.devicePixelRatioOf(context))
-                        .toInt(),
-              ),
+        if (product == null) {
+          return const Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
             ),
-            PositionedDirectional(
-              top: IMAGE_HEIGHT - 16.0,
-              start: 0.0,
-              end: 0.0,
-              bottom: 0.0,
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.vertical(
-                    top: Radius.circular(16.0),
+          );
+        }
+
+        return Scaffold(
+          body: SizedBox.expand(
+            child: Stack(
+              children: [
+                PositionedDirectional(
+                  top: 0.0,
+                  start: 0.0,
+                  end: 0.0,
+                  height: IMAGE_HEIGHT,
+                  child: Image.network(
+                    product.picture ?? '',
+                    fit: BoxFit.cover,
+                    cacheHeight:
+                        (IMAGE_HEIGHT * MediaQuery.devicePixelRatioOf(context))
+                            .toInt(),
                   ),
-                  color: Colors.white,
                 ),
-                padding: EdgeInsetsDirectional.symmetric(
-                  horizontal: 20.0,
-                  vertical: 30.0,
+
+                PositionedDirectional(
+                  top: IMAGE_HEIGHT - 16.0,
+                  start: 0.0,
+                  end: 0.0,
+                  bottom: 0.0,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(16.0),
+                      ),
+                      color: Colors.white,
+                    ),
+                    padding: const EdgeInsetsDirectional.symmetric(
+                      horizontal: 20.0,
+                      vertical: 30.0,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          product.name ?? 'Produit',
+                          style: context.theme.title1,
+                        ),
+                        Text(
+                          product.brands?.first ?? 'Marque',
+                          style: context.theme.title2,
+                        ),
+                        const SizedBox(height: 20),
+                        Scores(
+                          nutriScore: product.nutriScore ?? ProductNutriScore.unknown,
+                          novaScore: product.novaScore ?? ProductNovaScore.unknown,
+                          greenScore: product.greenScore ?? ProductGreenScore.unknown,
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-                child: Column(
-                  crossAxisAlignment: .start,
-                  children: [
-                    Text(
-                      product.name ?? 'Produit',
-                      style: context.theme.title1,
-                    ),
-                    Text(
-                      product.brands?.first ?? 'Marque',
-                      style: context.theme.title2,
-                    ),
-                    Scores(
-                      nutriScore:
-                          product.nutriScore ?? ProductNutriScore.unknown,
-                      novaScore: product.novaScore ?? ProductNovaScore.unknown,
-                      greenScore:
-                          product.greenScore ?? ProductGreenScore.unknown,
-                    ),
-                  ],
-                ),
-              ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }
@@ -259,21 +273,5 @@ class _TestState extends State<Test> {
   @override
   Widget build(BuildContext context) {
     return const Placeholder();
-  }
-}
-
-//test inherited widget
-class ProductInh extends InheritedWidget {
-  final Product product;
-
-  const ProductInh({super.key, required this.product, required super.child});
-
-  static ProductInh of(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<ProductInh>()!;
-  }
-
-  @override
-  bool updateShouldNotify(ProductInh oldWidget) {
-    return oldWidget.product != product;
   }
 }
