@@ -22,7 +22,18 @@ class ProductNotifier extends ChangeNotifier {
 
       final data = response.data;
 
-      _product = Product.fromJson(data);
+      debugPrint('JSON reçu : $data');
+
+      final productJson = data['response'];
+
+      _product = Product.fromJson(productJson);
+
+      debugPrint('NAME = ${_product?.name}');
+      debugPrint('BRANDS = ${_product?.brands}');
+      debugPrint('NUTRI = ${_product?.nutriScore}');
+      debugPrint('NovaScore = ${_product?.novaScore}');
+      debugPrint('GreenScore = ${_product?.greenScore}');
+
       notifyListeners();
     } catch (e) {
       debugPrint('Erreur lors du chargement du produit : $e');
